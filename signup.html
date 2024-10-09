@@ -10,7 +10,7 @@
         body {
             background-color: #f0f0f0;
         }
-        
+
         .signup-container {
             margin-top: 50px;
             background-color: #fff;
@@ -18,32 +18,32 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .signup-container h2 {
             text-align: center;
             margin-bottom: 20px;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .password-strength {
             margin-top: 5px;
         }
-        
+
         .password-strength span {
             font-weight: bold;
         }
-        
+
         .signup-container button {
             width: 100%;
         }
-        
+
         .terms {
             font-size: 0.9em;
         }
-        
+
         .login-link {
             margin-top: 20px;
             text-align: center;
@@ -95,9 +95,12 @@
     <script>
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
 
+            // Validate password and terms
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
                 return;
@@ -108,9 +111,41 @@
                 return;
             }
 
+            // Save user info in local storage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({ name, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
             alert('Account created successfully!');
             window.location.href = 'index.html';
         });
+
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const strengthIndicator = document.getElementById('strengthIndicator');
+            const password = this.value;
+            const strength = checkPasswordStrength(password);
+
+            strengthIndicator.textContent = strength;
+            if (strength === 'Strong') {
+                strengthIndicator.style.color = 'green';
+            } else if (strength === 'Medium') {
+                strengthIndicator.style.color = 'orange';
+            } else {
+                strengthIndicator.style.color = 'red';
+            }
+        });
+
+        function checkPasswordStrength(password) {
+            if (password.length < 8) {
+                return 'Weak';
+            } else if (password.length >= 8 && password.length < 12) {
+                return 'Medium';
+            } else if (password.length >= 12 && /[A-Z]/.test(password) && /\d/.test(password)) {
+                return 'Strong';
+            }
+            return 'Weak';
+        }
     </script>
 </body>
 
