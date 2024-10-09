@@ -1,0 +1,174 @@
+/*
+ *   Copyright (c) 2024 
+ *   All rights reserved.
+ */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.preview-item {
+    margin-top: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    /* Adjust size */
+    height: auto;
+}
+
+
+/* General Styles */
+
+body {
+    background-color: #1e1e1e;
+    /* Dark mode background */
+    color: #ffffff;
+    /* Light text for contrast */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1,
+h2 {
+    color: #ffffff;
+}
+
+a {
+    color: #00ff00;
+}
+
+input,
+button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #00ff00;
+    color: #1e1e1e;
+    border: none;
+    cursor: pointer;
+}
+
+.login-page,
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.home-page {
+    text-align: center;
+}
+
+.blank-ai-title {
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+.search-container {
+    margin: 20px;
+}
+
+.search-box {
+    width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background-color: #4a4a4a;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-section {
+    margin-top: 30px;
+}
+
+.custom-file-upload {
+    padding: 10px 20px;
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mic-icon {
+    margin-top: 20px;
+    font-size: 30px;
+    color: #00ff00;
+    /* Green mic icon */
+}

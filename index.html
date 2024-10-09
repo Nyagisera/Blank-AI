@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlankAI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .classy-title {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            font-size: 48px;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .upload-section {
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+        }
+        
+        .search-section {
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+        }
+        
+        .preview-section {
+            background-color: #fff;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+        
+        .preview-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+        }
+        
+        .preview-item canvas,
+        .preview-item video,
+        .preview-item audio {
+            width: 100%;
+            height: auto;
+        }
+        
+        #micIcon {
+            cursor: pointer;
+            filter: hue-rotate(180deg);
+            /* Converts to blue */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 upload-section p-4">
+                <h1 class="classy-title">BLANK AI</h1>
+                <h5>PDFs</h5>
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="pdfUpload">Upload PDFs:</label>
+                        <input type="file" class="form-control" id="pdfUpload" accept=".pdf" multiple onchange="previewFiles()">
+                    </div>
+
+                    <h5>Videos</h5>
+                    <div class="form-group">
+                        <label for="mp4Upload">Upload Videos:</label>
+                        <input type="file" class="form-control" id="mp4Upload" accept="video/*" multiple onchange="previewFiles()">
+                    </div>
+
+                    <h5>URLs</h5>
+                    <div class="form-group">
+                        <label for="urlUpload">Enter URL:</label>
+                        <input type="text" class="form-control" id="urlUpload" placeholder="Enter URL" onchange="previewFiles()">
+                    </div>
+
+                    <h5>Audio</h5>
+                    <div class="form-group">
+                        <label for="mp3Upload">Upload MP3s:</label>
+                        <input type="file" class="form-control" id="mp3Upload" accept=".mp3" multiple onchange="previewFiles()">
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-block" onclick="uploadFiles()">Upload</button>
+
+                    <!-- Progress bar -->
+                    <div id="progress-container" class="progress mt-3" style="display: none;">
+                        <div id="progress-bar" class="progress-bar" role="progressbar"></div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Middle: Search Section -->
+            <div class="col-md-4 search-section p-4">
+                <h2>Search Files</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Describe topographical mapping">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="searchFiles()">Search</button>
+
+                <!-- Blue Mic Icon for Voice Search -->
+                <div class="form-group mt-2">
+                    <img id="micIcon" src="https://img.icons8.com/ios-filled/50/000000/microphone.png" alt="mic" width="25" height="25">
+                </div>
+
+                <h3 class="mt-4">Brief AI Description</h3>
+                <textarea class="form-control mb-2" id="aiDescription" rows="4" placeholder="The AI-generated description will appear here..."></textarea>
+                <button class="btn btn-secondary" onclick="generateCitations()">Generate Citations</button>
+                <div id="results" class="mt-3"></div>
+
+                <!-- Citations/Timestamp Section -->
+                <div id="citations" class="mt-4" style="display: none;"></div>
+                <button id="backButton" class="btn btn-link" onclick="goBack()" style="display: none;">Back to Results</button>
+
+                <button class="btn btn-success mt-4" onclick="downloadPDF()">Download Results as PDF</button>
+            </div>
+
+            <!-- Right: Preview Section -->
+            <div class="col-md-4 preview-section p-4">
+                <h2>File Previews</h2>
+                <div id="previewContainer" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlankAI - Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        
+        .signup-container {
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .password-strength {
+            margin-top: 5px;
+        }
+        
+        .password-strength span {
+            font-weight: bold;
+        }
+        
+        .signup-container button {
+            width: 100%;
+        }
+        
+        .terms {
+            font-size: 0.9em;
+        }
+        
+        .login-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="signup-container">
+                    <h2>Create Your BlankAI Account</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter a password" required>
+                            <small class="form-text text-muted">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces.</small>
+                            <div class="password-strength">
+                                Password Strength: <span id="strengthIndicator">Weak</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="termsCheckbox" required>
+                            <label class="form-check-label terms" for="termsCheckbox">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                        <div class="login-link mt-3">
+                            Already have an account? <a href="login.html">Log in</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (!document.getElementById('termsCheckbox').checked) {
+                alert('You must agree to the Terms and Conditions to sign up.');
+                return;
+            }
+
+            alert('Account created successfully!');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>
